@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Diseño y nuevos medios" />
+        <title>DNO037</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <nav>
+              <p><a href="index.html" class="active">Maka'i Collection</a> <a href="bisuteria.html">Bisutería</a> <a href="ropa.html">Ropa</a> <a href="complementos.html">Complementos</a></p>
+            </nav>
+            <main>
+                <section>
+                    <!--acá se meten las películas-->
+                </section>
+            </main>
+            <footer>
+                <<p><a href="#">makaicollection1@gmail.com</a> <a href="#">@makaicollection</a></p>
+            </footer>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" integrity="sha512-rKFvwjvE4liWPlFnvH4ZhRDfNZ9FOpdkD/BU5gAIA3VS3vOQrQ5BjKgbO3kxebKhHdHcNUHLqxQYSoxee9UwgA==" crossorigin="anonymous"></script>
+        <script>
+                Papa.parse('https://raw.githubusercontent.com/mauraserra/EvaluacionFinal/main/complementos.csv', {
+                    download: true,
+                    header: true,
+                    dynamicTyping: true,
+                    complete: function (respuesta) {
+                        var complementos = respuesta.data;
+                        console.log(complementos);
+                        var n = new URLSearchParams(window.location.search).get('nro');
+                        if (n !== null) {
+                            document.querySelector('section').innerHTML = '<h1>' + complementos[n].name + '</h1><h4>' + complementos[n].price + '</h4> <img src="images/' + complementos[n].pic + '"><p>' + complementos[n].description + '</p>';
+
+                        }
+
+
+            }});
+        </script>
+    </body>
+</html>
